@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7.1)
 set(CMAKE_CXX_STANDARD 14)
 project(common VERSION 1.0)
 
-add_library(common src/strings.cpp src/helpers.cpp)
+add_library(common OBJECT src/strings.cpp src/helpers.cpp)
 set_property(TARGET common PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 # Define headers for this library. PUBLIC headers are used for
