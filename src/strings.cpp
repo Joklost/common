@@ -1,7 +1,7 @@
 #include <common/strings.h>
 
-std::vector<std::string> common::split(const std::string &string, const std::string &delim) {
-    std::vector<std::string> tokens{};
+std::deque<std::string> common::split(const std::string &string, const std::string &delim) {
+    std::deque<std::string> tokens{};
     size_t prev{}, pos{};
 
     do {
