@@ -23,6 +23,10 @@ namespace common {
         Container &get_container() {
             return this->c;
         }
+
+        const Container &get_container() const {
+            return this->c;
+        }
     };
 
     template<typename T>

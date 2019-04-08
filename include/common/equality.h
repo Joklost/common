@@ -18,7 +18,7 @@ namespace common {
     template<typename T>
     struct is_less {
         bool operator()(const T &left, const T &right) const {
-            return (!is_equal(left, right) && (left < right));;
+            return (!is_equal(left, right) && (left < right));
         }
     };
 
