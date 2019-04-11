@@ -5,6 +5,32 @@
 
 namespace common {
 
+    template<class T, class Allocator = std::allocator<T>>
+    class DoubleEndedQueue : public std::deque<T, Allocator> {
+    public:
+        DoubleEndedQueue() : std::deque<T, Allocator>(Allocator()) {}
+
+        /**
+         * Pop the first element and return a copy.
+         * @return Copy of the first element.
+         */
+        T fpop() {
+            T front = T{this->front()};
+            this->pop_front();
+            return front;
+        };
+
+        /**
+         * Pop the last element and return a copy.
+         * @return Copy of the last element.
+         */
+        T bpop() {
+            T back = T(this->back());
+            this->pop_back();
+            return back;
+        }
+    };
+
     template<
             class T,
             class Container = std::vector<T>,
@@ -12,18 +38,25 @@ namespace common {
     >
     class PriorityQueue : public std::priority_queue<T, Container, Compare> {
     public:
-        PriorityQueue() : std::priority_queue<T, Container, Compare>(Compare(), Container()) { }
-        explicit PriorityQueue(const Compare &compare) : std::priority_queue<T, Container, Compare>(compare, Container()) {}
+        PriorityQueue() : std::priority_queue<T, Container, Compare>(Compare(), Container()) {}
+
+        explicit PriorityQueue(const Compare &compare) : std::priority_queue<T, Container, Compare>(compare,
+                                                                                                    Container()) {}
 
         /**
+         * Returns a reference to the internal container.
          * When modifying the internal container, be very careful
          * not to modify the values used in the comparison function.
-         * @return The internal container.
+         * @return Reference to the internal container.
          */
         Container &get_container() {
             return this->c;
         }
 
+        /**
+         * Returns a const reference to the internal container.
+         * @return Const reference to the internal container.
+         */
         const Container &get_container() const {
             return this->c;
         }

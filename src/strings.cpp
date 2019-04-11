@@ -1,8 +1,8 @@
 #include <common/strings.h>
 
-std::deque<std::string> common::split(const std::string &string, const std::string &delim) {
-    std::deque<std::string> tokens{};
-    size_t prev{}, pos{};
+common::DoubleEndedQueue<std::string> common::split(const std::string &string, const std::string &delim) {
+    common::DoubleEndedQueue<std::string> tokens{};
+    unsigned long prev{}, pos{};
 
     do {
         pos = string.find(delim, prev);
