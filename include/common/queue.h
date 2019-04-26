@@ -1,3 +1,6 @@
+#ifndef COMMON_QUEUE_H
+#define COMMON_QUEUE_H
+
 #include <queue>
 #include <thread>
 #include <mutex>
@@ -60,6 +63,16 @@ namespace common {
         const Container &get_container() const {
             return this->c;
         }
+
+        /**
+         * Pop the first element and return a copy.
+         * @return Copy of the first element.
+         */
+        T fpop() {
+            T front = T{this->top()};
+            this->pop();
+            return front;
+        };
     };
 
     template<typename T>
@@ -122,3 +135,5 @@ namespace common {
     }
 
 }
+
+#endif /* COMMON_QUEUE_H */
